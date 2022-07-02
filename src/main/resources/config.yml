@@ -1,0 +1,24 @@
+#############################
+#  MultiMend Configuration  #
+#############################
+# Final Repair Amount = Base * Base_Multiplier + Bonus * Bonus_Multiplier
+###
+# Rounding Settings:
+#   nearest:  Standard Rounding   (ie: 0.5 -> 1)
+#   up:       Rounds Up (Ceiling) (ie: 0.4 -> 1)
+#   down:     Rounds Down (Floor) (ie: 0.6 -> 0)
+# Rounding defaults to "nearest" on invalid setting.
+###
+
+# Determines the base multiplier for Mending.
+multiplier-settings:
+  enabled: false
+  multiplier: 1.0
+  rounding: nearest
+
+# Determines the bonus of the Mending Repair Amount.
+bonus-settings:
+  enabled: false
+  amount: 0
+  multiplier: 1.0
+  rounding: nearest
