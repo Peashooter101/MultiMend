@@ -1,6 +1,6 @@
 name: MultiMend
 version: '${project.version}'
-main: com.adhdmc.Peashooter101.MultiMend
+main: com.adhdmc.MultiMend.MultiMend
 api-version: 1.19
 authors: [ Peashooter101, Rhythmic ]
 description: Your Mending, your way (totally not taken off a cool server)

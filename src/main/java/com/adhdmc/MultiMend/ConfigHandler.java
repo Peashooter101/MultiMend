@@ -45,7 +45,7 @@ public class ConfigHandler {
     }
 
     public static void saveConfigs() {
-        MultiMend.getPlugin().saveConfig();
+        MultiMend.getPlugin().saveDefaultConfig();
         reloadConfigs();
     }
 
