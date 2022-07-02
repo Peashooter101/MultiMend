@@ -2,6 +2,7 @@
 #  MultiMend Configuration  #
 #############################
 # Final Repair Amount = Base * Base_Multiplier + Bonus * Bonus_Multiplier
+# Randomness (Level Based) = Chance * Mending_Level
 ###
 # Rounding Settings:
 #   nearest:  Standard Rounding   (ie: 0.5 -> 1)
@@ -22,3 +23,10 @@ bonus-settings:
   amount: 0
   multiplier: 1.0
   rounding: nearest
+
+# Determines how often Mending fires.
+# Chance is in percent (0-100)
+randomness-settings:
+  enabled: false
+  mend-chance: 100
+  level-based: false

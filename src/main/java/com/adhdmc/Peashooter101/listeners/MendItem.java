@@ -1,6 +1,7 @@
 package com.adhdmc.Peashooter101.listeners;
 
 import com.adhdmc.Peashooter101.ConfigHandler;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemMendEvent;
@@ -11,6 +12,17 @@ public class MendItem implements Listener {
     @EventHandler
     public void onMendItem(PlayerItemMendEvent e) {
         if (e.isCancelled()) { return; }
+
+        // Randomness Check
+        if (ConfigHandler.isRandomnessEnabled()) {
+            int roll = (int) (Math.random()*100 + 1);
+            if (ConfigHandler.isRandomnessLevelBased()) {
+                roll = roll*e.getItem().getEnchantmentLevel(Enchantment.MENDING);
+            }
+            if (roll >= ConfigHandler.getRandomnessChance()) {
+                return;
+            }
+        }
 
         int repair = e.getRepairAmount();
 

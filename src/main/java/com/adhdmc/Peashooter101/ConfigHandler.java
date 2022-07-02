@@ -4,9 +4,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigHandler {
 
-    private static boolean multiplierEnabled, bonusMultiplierEnabled;
+    private static boolean multiplierEnabled, bonusMultiplierEnabled, randomnessEnabled, randomnessLevelBased;
     private static double multiplier, bonusMultiplier;
-    private static int bonus;
+    private static int bonus, randomnessChance;
     private static ROUNDING multiplierRounding, bonusRounding;
 
     public enum ROUNDING {UP, DOWN, NEAREST}
@@ -34,6 +34,11 @@ public class ConfigHandler {
             // TODO: Output Error to Console
             multiplierRounding = ROUNDING.NEAREST;
         }
+
+        // Randomness
+        randomnessEnabled = config.getBoolean("randomness-settings.enabled", false);
+        randomnessLevelBased = config.getBoolean("randomness-settings.level-based", false);
+        randomnessChance = config.getInt("randomness-settings.chance");
     }
 
     public static void saveConfigs() {
@@ -51,5 +56,10 @@ public class ConfigHandler {
     public static int getBonus() { return bonus; }
     public static double getBonusMultiplier() { return bonusMultiplier; }
     public static ROUNDING getBonusRounding() { return bonusRounding; }
+
+    // Randomness
+    public static boolean isRandomnessEnabled() { return randomnessEnabled; }
+    public static boolean isRandomnessLevelBased() { return randomnessLevelBased; }
+    public static int getRandomnessChance() { return randomnessChance; }
 
 }
