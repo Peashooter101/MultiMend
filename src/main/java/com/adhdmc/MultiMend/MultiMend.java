@@ -1,6 +1,6 @@
-package com.adhdmc.Peashooter101;
+package com.adhdmc.MultiMend;
 
-import com.adhdmc.Peashooter101.listeners.MendItem;
+import com.adhdmc.MultiMend.listeners.MendItem;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 

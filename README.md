@@ -13,5 +13,7 @@ This is an attempt to keep Mending in the game while making it much more managea
 
 - **Random Chance**: Mending can be configured to mend randomly rather than 100% of the time.
     - Can make this random chance increase with Mending Level, meaning levels actually can mean something!
-- **Multiplier**: Mending can be configured to give more or less overall relative to the XP.
+- **Multiplier**: Mending can be configured to give more or less overall relative to the Base XP.
 - **Bonuses**: Mending can have flat bonuses added onto it!
+  - Can make this bonus increase with Mending Level!
+  - Bonuses can use a multiplier per level or a flat increase!

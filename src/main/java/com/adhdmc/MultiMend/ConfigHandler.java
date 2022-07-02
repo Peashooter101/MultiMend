@@ -1,10 +1,11 @@
-package com.adhdmc.Peashooter101;
+package com.adhdmc.MultiMend;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigHandler {
 
-    private static boolean multiplierEnabled, bonusMultiplierEnabled, randomnessEnabled, randomnessLevelBased;
+    private static boolean multiplierEnabled, bonusEnabled, bonusLevelBased, randomnessEnabled,
+            randomnessLevelBased, bonusUsingMultiplier;
     private static double multiplier, bonusMultiplier;
     private static int bonus, randomnessChance;
     private static ROUNDING multiplierRounding, bonusRounding;
@@ -25,9 +26,11 @@ public class ConfigHandler {
         }
 
         // Bonus Multiplier
-        bonusMultiplierEnabled = config.getBoolean("bonus-settings.enabled", false);
+        bonusEnabled = config.getBoolean("bonus-settings.enabled", false);
         bonus = config.getInt("bonus-settings.amount", 0);
-        bonusMultiplier = config.getDouble("bonus-settings.multiplier", 1.0);
+        bonusLevelBased = config.getBoolean("bonus-settings.level-based", false);
+        bonusUsingMultiplier = config.getBoolean("bonus-settings.use-multiplier-for-levels", false);
+        bonusMultiplier = config.getDouble("bonus-settings.multiplier-per-level", 1.0);
         try {
             bonusRounding = ROUNDING.valueOf(config.getString("bonus-settings.rounding", "nearest"));
         } catch (IllegalArgumentException e) {
@@ -52,8 +55,10 @@ public class ConfigHandler {
     public static ROUNDING getMultiplierRounding() { return multiplierRounding; }
 
     // Bonus
-    public static boolean isBonusMultiplierEnabled() { return bonusMultiplierEnabled; }
+    public static boolean isBonusEnabled() { return bonusEnabled; }
     public static int getBonus() { return bonus; }
+    public static boolean isBonusLevelBased() { return bonusLevelBased; }
+    public static boolean isBonusUsingMultiplier() { return bonusUsingMultiplier; }
     public static double getBonusMultiplier() { return bonusMultiplier; }
     public static ROUNDING getBonusRounding() { return bonusRounding; }
 

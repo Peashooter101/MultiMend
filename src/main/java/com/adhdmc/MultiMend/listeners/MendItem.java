@@ -1,11 +1,11 @@
-package com.adhdmc.Peashooter101.listeners;
+package com.adhdmc.MultiMend.listeners;
 
-import com.adhdmc.Peashooter101.ConfigHandler;
+import com.adhdmc.MultiMend.ConfigHandler;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemMendEvent;
-import com.adhdmc.Peashooter101.ConfigHandler.ROUNDING;
+import com.adhdmc.MultiMend.ConfigHandler.ROUNDING;
 
 public class MendItem implements Listener {
 
@@ -13,13 +13,16 @@ public class MendItem implements Listener {
     public void onMendItem(PlayerItemMendEvent e) {
         if (e.isCancelled()) { return; }
 
+        int mendLevel = e.getItem().getEnchantmentLevel(Enchantment.MENDING);
+
         // Randomness Check
         if (ConfigHandler.isRandomnessEnabled()) {
             int roll = (int) (Math.random()*100 + 1);
             if (ConfigHandler.isRandomnessLevelBased()) {
-                roll = roll*e.getItem().getEnchantmentLevel(Enchantment.MENDING);
+                roll = roll*mendLevel;
             }
             if (roll >= ConfigHandler.getRandomnessChance()) {
+                e.setCancelled(true);
                 return;
             }
         }
@@ -33,10 +36,19 @@ public class MendItem implements Listener {
         }
 
         // Bonuses
-        if (ConfigHandler.isBonusMultiplierEnabled()) {
-            double multi = ConfigHandler.getBonusMultiplier();
+        if (ConfigHandler.isBonusEnabled()) {
             int bonus = ConfigHandler.getBonus();
-            repair += round(multi*bonus, ConfigHandler.getBonusRounding());
+
+            if (ConfigHandler.isBonusLevelBased()) {
+                if (ConfigHandler.isBonusUsingMultiplier()) {
+                    double multi = ConfigHandler.getBonusMultiplier();
+                    bonus = round(bonus*mendLevel*multi, ConfigHandler.getBonusRounding());
+                } else {
+                    bonus = bonus*mendLevel;
+                }
+            }
+
+            repair += bonus;
         }
 
         e.setRepairAmount(repair);
