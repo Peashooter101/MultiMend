@@ -1,7 +1,7 @@
 #############################
 #  MultiMend Configuration  #
 #############################
-# Final Repair Amount = (Base * Base_Multiplier) + (Bonus * Bonus_Multiplier)
+# Final Repair Amount = TODO: Do this equation.
 # Randomness (Level Based) = Chance * Mending_Level
 ###
 # Rounding Settings:
@@ -15,13 +15,13 @@
 multiplier-settings:
   enabled: false
   multiplier: 1.0
-  rounding: nearest
+  rounding: "nearest"
 
 # Determines the bonus of the Mending Repair Amount.
 bonus-settings:
   enabled: false
   amount: 0
-  rounding: nearest
+  rounding: "nearest"
   level-based: false
   use-multiplier-for-levels: false
   multiplier-per-level: 1.0

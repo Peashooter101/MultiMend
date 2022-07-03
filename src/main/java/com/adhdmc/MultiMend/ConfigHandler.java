@@ -35,7 +35,7 @@ public class ConfigHandler {
             bonusRounding = ROUNDING.valueOf(config.getString("bonus-settings.rounding", "nearest"));
         } catch (IllegalArgumentException e) {
             // TODO: Output Error to Console
-            multiplierRounding = ROUNDING.NEAREST;
+            bonusRounding = ROUNDING.NEAREST;
         }
 
         // Randomness

@@ -51,18 +51,19 @@ public class MendItem implements Listener {
             repair += bonus;
         }
 
+        // Attempt to resolve StackOverflow error.
+        if (repair == 0) {
+            e.setCancelled(true);
+            return;
+        }
         e.setRepairAmount(repair);
     }
 
     private int round(double input, ROUNDING rounding) {
         switch (rounding) {
-            case UP:
-                input = Math.ceil(input);
-                break;
-            case DOWN:
-                input = Math.floor(input);
-            default:
-                input = Math.round(input);
+            case UP -> input = Math.ceil(input);
+            case DOWN -> input = Math.floor(input);
+            default -> input = Math.round(input);
         }
         return (int) input;
     }
