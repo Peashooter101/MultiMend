@@ -11,6 +11,9 @@
 # Rounding defaults to "nearest" on invalid setting.
 ###
 
+# Determines the experience required per mending action.
+xp-cost: 2
+
 # Determines the base multiplier for Mending.
 multiplier-settings:
   enabled: false

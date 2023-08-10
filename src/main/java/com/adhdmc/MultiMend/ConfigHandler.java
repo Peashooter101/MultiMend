@@ -7,22 +7,25 @@ public class ConfigHandler {
     private static boolean multiplierEnabled, bonusEnabled, bonusLevelBased, randomnessEnabled,
             randomnessLevelBased, bonusUsingMultiplier;
     private static double multiplier, bonusMultiplier;
-    private static int bonus, randomnessChance;
-    private static ROUNDING multiplierRounding, bonusRounding;
+    private static int xpCost, bonus, randomnessChance;
+    private static Rounding multiplierRounding, bonusRounding;
 
-    public enum ROUNDING {UP, DOWN, NEAREST}
+    public enum Rounding {UP, DOWN, NEAREST}
 
     public static void reloadConfigs() {
         FileConfiguration config = MultiMend.getPlugin().getConfig();
+
+        // XP per Operation
+        xpCost = config.getInt("xp-cost", 2);
 
         // Base Multiplier
         multiplierEnabled = config.getBoolean("multiplier-settings.enabled", false);
         multiplier = config.getDouble("multiplier-settings.multiplier", 1.0);
         try {
-            multiplierRounding = ROUNDING.valueOf(config.getString("multiplier-settings.rounding", "nearest"));
+            multiplierRounding = Rounding.valueOf(config.getString("multiplier-settings.rounding", "nearest"));
         } catch (IllegalArgumentException e) {
             // TODO: Output Error to Console
-            multiplierRounding = ROUNDING.NEAREST;
+            multiplierRounding = Rounding.NEAREST;
         }
 
         // Bonus Multiplier
@@ -32,10 +35,10 @@ public class ConfigHandler {
         bonusUsingMultiplier = config.getBoolean("bonus-settings.use-multiplier-for-levels", false);
         bonusMultiplier = config.getDouble("bonus-settings.multiplier-per-level", 1.0);
         try {
-            bonusRounding = ROUNDING.valueOf(config.getString("bonus-settings.rounding", "nearest"));
+            bonusRounding = Rounding.valueOf(config.getString("bonus-settings.rounding", "nearest"));
         } catch (IllegalArgumentException e) {
             // TODO: Output Error to Console
-            bonusRounding = ROUNDING.NEAREST;
+            bonusRounding = Rounding.NEAREST;
         }
 
         // Randomness
@@ -49,10 +52,13 @@ public class ConfigHandler {
         reloadConfigs();
     }
 
+    // XP Per Operation Cost
+    public static int getXpCost() { return xpCost; }
+
     // Base Multiplier
     public static boolean isMultiplierEnabled() { return multiplierEnabled; }
     public static double getMultiplier() { return multiplier; }
-    public static ROUNDING getMultiplierRounding() { return multiplierRounding; }
+    public static Rounding getMultiplierRounding() { return multiplierRounding; }
 
     // Bonus
     public static boolean isBonusEnabled() { return bonusEnabled; }
@@ -60,7 +66,7 @@ public class ConfigHandler {
     public static boolean isBonusLevelBased() { return bonusLevelBased; }
     public static boolean isBonusUsingMultiplier() { return bonusUsingMultiplier; }
     public static double getBonusMultiplier() { return bonusMultiplier; }
-    public static ROUNDING getBonusRounding() { return bonusRounding; }
+    public static Rounding getBonusRounding() { return bonusRounding; }
 
     // Randomness
     public static boolean isRandomnessEnabled() { return randomnessEnabled; }
