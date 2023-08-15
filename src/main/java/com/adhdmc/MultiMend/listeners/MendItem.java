@@ -30,13 +30,12 @@ public class MendItem implements Listener {
         /* Game reads repair cost as 2x + 1, where x is the number of uses.
          * Cost of any repair will double the price.
          */
-//        ItemStack result = anvil.getFirstItem();
-//        net.minecraft.world.item.ItemStack resultHandle = ((CraftItemStack) result).handle;
-//        resultHandle.setRepairCost(anvil.getRepairCost()-1);
-//        anvil.setRepairCost(0);
-//        anvil.setResult(result);
+        ItemStack result = anvil.getFirstItem();
+        net.minecraft.world.item.ItemStack resultHandle = ((CraftItemStack) result).handle;
+        resultHandle.setRepairCost(anvil.getRepairCost()-1);
+        ItemStack newResult = new ItemStack(result);
         anvil.setRepairCost(0);
-        anvil.setMaximumRepairCost();
+        anvil.setResult(newResult);
     }
 
     public int calculatePreviousCost(int cost) {
